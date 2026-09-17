@@ -4,7 +4,7 @@
 
 ---
 
-## 📌 Executive Summary
+##  Executive Summary
 
 E-commerce businesses face multi-million dollar trade-offs: stockouts lead to lost revenue and customer churn, while overstocking ties up critical working capital in holding costs. Traditional static reorder thresholds fail to adapt to demand volatility.
 
@@ -12,7 +12,7 @@ This project addresses these challenges by establishing an automated, data-drive
 
 ---
 
-## 📊 Key Results & Impact
+##  Key Results & Impact
 
 * **Optimal Forecast Generalizability:** Selected a **4-Week Moving Average** model evaluated on a 10-week out-of-sample holdout test (**WAPE = 50.34%**, **MAE = 325.50 units**), filtering out volatile demand spikes without overfitting.
 * **Service Level Guarantee:** Automated dynamic Safety Stock buffers targeting a **95% Cycle Service Level (CSL)** using Z-score statistics ($Z = 1.65$).
@@ -20,7 +20,7 @@ This project addresses these challenges by establishing an automated, data-drive
 
 ---
 
-## 🛠️ Tech Stack & Architecture
+##  Tech Stack & Architecture
 
 ```text
 Raw Retail Data (CSV/Excel)
@@ -42,7 +42,7 @@ Data Cleaning & Feature Engineering (Pandas / NumPy)
        │
        └──► Interactive Streamlit Portfolio Web App (src/app.py)
 
-       DomainTechnologies UsedData Processing & MLPython, Pandas, NumPy, Scikit-LearnDatabase & AnalyticsSQLite, SQL (Aggregations, Joins, Windowing)Business IntelligencePower BI Desktop, DAX, Star Schema Data ModelingGenerative AIGoogle GenAI SDK (gemini-3.6-flash)Web UI ApplicationStreamlit, MatplotlibVersion ControlGit, GitHub📐 Inventory Decision FrameworkSafety Stock (SS): $Z \times \sigma_d \times \sqrt{L}$ (where $Z = 1.65$ for 95% CSL)Reorder Point (ROP): $\text{Forecasted Demand During Lead Time} + \text{Safety Stock}$Action Rules:REORDER NOW: Inventory Position $\le$ ROPMONITOR: ROP $<$ Inventory Position $\le 1.5 \times$ ROPSUFFICIENT STOCK: $1.5 \times \text{ROP} < \text{Inventory Position} \le 2.5 \times \text{ROP}$POTENTIAL OVERSTOCK: Inventory Position $> 2.5 \times$ ROPNote on Data Assumptions: Inventory positions and lead times are generated using deterministic empirical distributions derived from historical order variances.🖥️ Deliverables & Interactive Interfaces1. Power BI Executive Dashboard (dashboard/powerbi/)Built on a production Star Schema (dim_product, dim_date, dim_risk_category, fact_inventory_risk) with custom DAX measures across 6 tailored pages:Executive Overview: High-level inventory valuation, stockout risk distribution, and critical KPIs.Sales & Demand Trends: Historical volume trends and chronological monthly performance.Demand Forecast: Model benchmarking metrics (WAPE, MAE) and 10-week holdout evaluation.Inventory Intelligence: Reorder Point vs. Inventory Position scatter matrix.Product Prioritization: Full-width Matrix with color-coded risk action tiers.AI Business Insights: Native Key Influencers visual paired with dynamic GenAI executive summaries.2. GenAI Interpretation Engine (src/genai_insights.py)Utilizes Google's gemini-3.6-flash model with strict temperature constraints (0.2) to summarize inventory risks without numerical hallucination.Fail-Safe Architecture: The pipeline and dashboards function smoothly even if the LLM API is unavailable.3. Streamlit Portfolio App (src/app.py)A lightweight, fast UI allowing recruiters and stakeholders to inspect individual SKUs, historical demand graphs, safety stock levels, and AI recommendations interactively.
+       DomainTechnologies UsedData Processing & MLPython, Pandas, NumPy, Scikit-LearnDatabase & AnalyticsSQLite, SQL (Aggregations, Joins, Windowing)Business IntelligencePower BI Desktop, DAX, Star Schema Data ModelingGenerative AIGoogle GenAI SDK (gemini-3.6-flash)Web UI ApplicationStreamlit, MatplotlibVersion ControlGit, GitHub Inventory Decision FrameworkSafety Stock (SS): $Z \times \sigma_d \times \sqrt{L}$ (where $Z = 1.65$ for 95% CSL)Reorder Point (ROP): $\text{Forecasted Demand During Lead Time} + \text{Safety Stock}$Action Rules:REORDER NOW: Inventory Position $\le$ ROPMONITOR: ROP $<$ Inventory Position $\le 1.5 \times$ ROPSUFFICIENT STOCK: $1.5 \times \text{ROP} < \text{Inventory Position} \le 2.5 \times \text{ROP}$POTENTIAL OVERSTOCK: Inventory Position $> 2.5 \times$ ROPNote on Data Assumptions: Inventory positions and lead times are generated using deterministic empirical distributions derived from historical order variances. Deliverables & Interactive Interfaces1. Power BI Executive Dashboard (dashboard/powerbi/)Built on a production Star Schema (dim_product, dim_date, dim_risk_category, fact_inventory_risk) with custom DAX measures across 6 tailored pages:Executive Overview: High-level inventory valuation, stockout risk distribution, and critical KPIs.Sales & Demand Trends: Historical volume trends and chronological monthly performance.Demand Forecast: Model benchmarking metrics (WAPE, MAE) and 10-week holdout evaluation.Inventory Intelligence: Reorder Point vs. Inventory Position scatter matrix.Product Prioritization: Full-width Matrix with color-coded risk action tiers.AI Business Insights: Native Key Influencers visual paired with dynamic GenAI executive summaries.2. GenAI Interpretation Engine (src/genai_insights.py)Utilizes Google's gemini-3.6-flash model with strict temperature constraints (0.2) to summarize inventory risks without numerical hallucination.Fail-Safe Architecture: The pipeline and dashboards function smoothly even if the LLM API is unavailable.3. Streamlit Portfolio App (src/app.py)A lightweight, fast UI allowing recruiters and stakeholders to inspect individual SKUs, historical demand graphs, safety stock levels, and AI recommendations interactively.
 
        📂 Repository Structure
 
@@ -83,7 +83,7 @@ python src/genai_insights.py
 4. Launch Streamlit Web Application
 Bash
 streamlit run src/app.py
-🔮 Future Enhancements
+ Future Enhancements
 Supplier Integration: Connect dynamic lead-time distributions directly to real-time vendor shipping APIs.
 
 Advanced Architectures: Benchmark gradient boosting (XGBoost) and Prophet models against the moving average baseline.
