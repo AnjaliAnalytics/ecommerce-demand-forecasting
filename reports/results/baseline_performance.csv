@@ -1,0 +1,4 @@
+Model,MAE (Units),RMSE (Units),WAPE (%)
+Naive Forecast,489.4,543.46,75.69
+4-Week Moving Average,325.5,355.09,50.34
+Seasonal Naive,765.9,1137.43,118.45

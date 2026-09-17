@@ -1,0 +1,17 @@
+# Exclude raw & large processed data
+data/raw/
+data/processed/*.csv
+data/processed/*.db
+data/*.db
+*.db
+
+# Environment variables & secrets
+.env
+*.env
+
+# Python bytecode & cache
+__pycache__/
+*.py[cod]
+
+# Streamlit local config
+.streamlit/

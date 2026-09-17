@@ -1,0 +1,6 @@
+Model,MAE (Units),RMSE (Units),WAPE (%),Training Approach,Forecast Horizon
+4-Week Moving Average,325.5,355.09,50.34,Baseline (Rolling 4-Week Mean),10 Weeks (Validation Holdout)
+Holt-Winters Exp Smoothing,566.03,1080.44,55.85,Statistical Time Series (Additive Trend),10 Weeks (Validation Holdout)
+Naive Forecast,489.4,543.46,75.69,Baseline (1-Period Shift),10 Weeks (Validation Holdout)
+Random Forest Regressor,775.92,1263.85,76.55,Machine Learning (Lags + Rolling Stats),10 Weeks (Validation Holdout)
+Seasonal Naive,765.9,1137.43,118.45,Baseline (52-Week Seasonal Lag),10 Weeks (Validation Holdout)
