@@ -7,24 +7,24 @@
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=SF+Pro+Display:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
     
     <style>
-        /* CSS Reset & Variables */
+        /* Apple-Inspired Minimalist Palette */
         :root {
-            --bg-deep: #0F172A;
-            --bg-card: #1E293B;
-            --bg-card-hover: #26354A;
-            --accent-cyan: #38BDF8;
-            --accent-cyan-hover: #0284C7;
-            --text-primary: #F8FAFC;
-            --text-secondary: #94A3B8;
-            --text-muted: #64748B;
-            --border-color: #334155;
-            --success-color: #34D399;
-            --warning-color: #FBBF24;
-            --danger-color: #F87171;
-            --font-main: 'Inter', system-ui, -apple-system, sans-serif;
+            --bg-deep: #000000;
+            --bg-card: #161617;
+            --bg-card-hover: #1D1D1F;
+            --bg-modal: #2C2C2E;
+            --accent-blue: #0071E3;
+            --accent-blue-hover: #0077ED;
+            --text-primary: #F5F5F7;
+            --text-secondary: #86868B;
+            --text-muted: #6E6E73;
+            --border-color: #2D2D2E;
+            --success-color: #30D158;
+            --warning-color: #FF9F0A;
+            --font-main: 'SF Pro Display', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
             --font-code: 'JetBrains Mono', monospace;
         }
 
@@ -42,40 +42,48 @@
             background-color: var(--bg-deep);
             color: var(--text-primary);
             font-family: var(--font-main);
-            line-height: 1.6;
+            line-height: 1.5;
             padding-bottom: 40px;
+            -webkit-font-smoothing: antialiased;
         }
 
         /* Utility Classes */
         .container {
-            max-width: 1280px;
+            max-width: 1200px;
             margin: 0 auto;
             padding: 0 24px;
         }
 
         .badge {
             display: inline-block;
-            padding: 4px 12px;
-            border-radius: 9999px;
-            font-size: 0.85rem;
+            padding: 6px 14px;
+            border-radius: 980px;
+            font-size: 0.8rem;
             font-weight: 500;
-            background: rgba(56, 189, 248, 0.1);
-            color: var(--accent-cyan);
-            border: 1px solid rgba(56, 189, 248, 0.25);
+            background: rgba(0, 113, 227, 0.15);
+            color: var(--accent-blue);
+            border: 1px solid rgba(0, 113, 227, 0.3);
+            letter-spacing: -0.01em;
         }
 
         .tech-tag {
             display: inline-flex;
             align-items: center;
-            padding: 6px 14px;
-            background-color: rgba(51, 65, 85, 0.5);
+            padding: 8px 16px;
+            background-color: #1C1C1E;
             border: 1px solid var(--border-color);
-            border-radius: 6px;
+            border-radius: 980px;
             font-size: 0.85rem;
             font-weight: 500;
             color: var(--text-primary);
             margin-right: 8px;
-            margin-bottom: 8px;
+            margin-bottom: 10px;
+            transition: all 0.2s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+
+        .tech-tag:hover {
+            border-color: var(--accent-blue);
+            transform: scale(1.03);
         }
 
         /* Buttons */
@@ -83,105 +91,111 @@
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            padding: 12px 24px;
-            border-radius: 8px;
-            font-weight: 600;
+            padding: 12px 26px;
+            border-radius: 980px;
+            font-weight: 500;
             font-size: 0.95rem;
             text-decoration: none;
-            transition: all 0.2s ease;
+            transition: all 0.25s cubic-bezier(0.25, 1, 0.5, 1);
             cursor: pointer;
         }
 
         .btn-primary {
-            background-color: var(--accent-cyan);
-            color: #0F172A;
-            border: 1px solid var(--accent-cyan);
+            background-color: var(--accent-blue);
+            color: #FFFFFF;
+            border: none;
         }
 
         .btn-primary:hover {
-            background-color: var(--accent-cyan-hover);
-            border-color: var(--accent-cyan-hover);
-            color: #FFFFFF;
-            box-shadow: 0 4px 14px rgba(56, 189, 248, 0.3);
+            background-color: var(--accent-blue-hover);
+            transform: scale(1.02);
+            box-shadow: 0 4px 20px rgba(0, 113, 227, 0.4);
         }
 
         .btn-secondary {
-            background-color: transparent;
+            background-color: #1C1C1E;
             color: var(--text-primary);
             border: 1px solid var(--border-color);
             margin-left: 12px;
         }
 
         .btn-secondary:hover {
-            background-color: var(--bg-card);
+            background-color: #2C2C2E;
             border-color: var(--text-secondary);
+            transform: scale(1.02);
         }
 
         /* Header Section */
         header {
-            padding: 80px 0 60px;
-            border-bottom: 1px solid var(--border-color);
-            background: linear-gradient(180deg, rgba(30, 41, 59, 0.5) 0%, rgba(15, 23, 42, 1) 100%);
+            padding: 100px 0 60px;
+            text-align: center;
+            background: radial-gradient(circle at 50% 0%, rgba(0, 113, 227, 0.15) 0%, rgba(0, 0, 0, 1) 70%);
         }
 
         .header-content {
-            max-width: 900px;
+            max-width: 850px;
+            margin: 0 auto;
         }
 
         .header-title {
-            font-size: 2.75rem;
+            font-size: 3.25rem;
             font-weight: 700;
-            line-height: 1.2;
-            margin: 16px 0;
-            background: linear-gradient(135deg, #FFFFFF 0%, #94A3B8 100%);
+            line-height: 1.1;
+            margin: 20px 0;
+            letter-spacing: -0.025em;
+            background: linear-gradient(180deg, #FFFFFF 0%, #86868B 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
 
         .header-subtitle {
-            font-size: 1.2rem;
+            font-size: 1.25rem;
             color: var(--text-secondary);
-            margin-bottom: 32px;
+            margin-bottom: 36px;
+            font-weight: 400;
         }
 
-        /* Key Metrics KPI Grid */
+        /* Key Metrics Grid */
         .metrics-section {
-            padding: 40px 0;
-            margin-top: -30px;
+            padding: 30px 0 60px;
         }
 
         .metrics-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-            gap: 20px;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 16px;
         }
 
         .metric-card {
             background-color: var(--bg-card);
             border: 1px solid var(--border-color);
-            border-radius: 12px;
-            padding: 24px;
-            transition: transform 0.2s ease, border-color 0.2s ease;
+            border-radius: 18px;
+            padding: 28px;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
         }
 
         .metric-card:hover {
+            background-color: var(--bg-card-hover);
+            border-color: var(--accent-blue);
             transform: translateY(-4px);
-            border-color: var(--accent-cyan);
         }
 
         .metric-title {
-            font-size: 0.875rem;
+            font-size: 0.8rem;
             color: var(--text-secondary);
             text-transform: uppercase;
-            letter-spacing: 0.05em;
+            letter-spacing: 0.06em;
             margin-bottom: 8px;
+            font-weight: 600;
         }
 
         .metric-value {
-            font-size: 2.25rem;
+            font-size: 2.5rem;
             font-weight: 700;
             color: var(--text-primary);
             font-family: var(--font-code);
+            letter-spacing: -0.03em;
         }
 
         .metric-trend {
@@ -196,142 +210,258 @@
         /* General Section Styling */
         section {
             padding: 60px 0;
+            border-top: 1px solid #161617;
         }
 
         .section-header {
-            margin-bottom: 32px;
+            margin-bottom: 36px;
         }
 
         .section-title {
-            font-size: 1.75rem;
+            font-size: 2rem;
             font-weight: 700;
             color: var(--text-primary);
-            margin-bottom: 8px;
+            letter-spacing: -0.02em;
+            margin-top: 8px;
         }
 
         .section-desc {
             color: var(--text-secondary);
             font-size: 1.05rem;
+            margin-top: 6px;
         }
 
-        /* Project Context & Tech Stack */
-        .context-grid {
+        /* Project Overview & Data Section */
+        .grid-2 {
             display: grid;
-            grid-template-columns: 2fr 1fr;
-            gap: 32px;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
         }
 
-        .context-card {
+        .content-card {
             background-color: var(--bg-card);
             border: 1px solid var(--border-color);
-            border-radius: 12px;
+            border-radius: 20px;
             padding: 32px;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
         }
 
-        .context-card h3 {
-            font-size: 1.25rem;
-            margin-bottom: 16px;
-            color: var(--accent-cyan);
+        .content-card:hover {
+            background-color: var(--bg-card-hover);
+            border-color: #3D3D3F;
+            transform: translateY(-2px);
         }
 
-        .context-card p {
+        .content-card h3 {
+            font-size: 1.35rem;
+            margin-bottom: 14px;
+            color: var(--text-primary);
+            font-weight: 600;
+        }
+
+        .content-card p {
             color: var(--text-secondary);
             margin-bottom: 16px;
+            font-size: 0.975rem;
+            line-height: 1.6;
         }
 
-        /* Dashboard Container */
-        .dashboard-container {
-            background-color: var(--bg-card);
+        /* Code Block Styling */
+        .code-container {
+            background-color: #0A0A0C;
             border: 1px solid var(--border-color);
             border-radius: 12px;
             padding: 16px;
-            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.5);
-            overflow: hidden;
+            font-family: var(--font-code);
+            font-size: 0.85rem;
+            color: #D1D5DB;
+            overflow-x: auto;
+            margin-top: 12px;
         }
 
-        /* Executive Findings Grid */
+        /* Architecture Diagram Box */
+        .arch-box {
+            background-color: #0D0D0E;
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 24px;
+            font-family: var(--font-code);
+            color: var(--accent-blue);
+            white-space: pre;
+            overflow-x: auto;
+            font-size: 0.85rem;
+            line-height: 1.4;
+        }
+
+        /* Callout Box */
+        .callout-card {
+            background-color: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 20px;
+            padding: 48px 32px;
+            text-align: center;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.8);
+        }
+
+        /* Findings Grid */
         .findings-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
             gap: 20px;
         }
 
         .finding-card {
             background-color: var(--bg-card);
             border: 1px solid var(--border-color);
-            border-radius: 12px;
-            padding: 24px;
+            border-radius: 18px;
+            padding: 28px;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
             display: flex;
             flex-direction: column;
             justify-content: space-between;
         }
 
+        .finding-card:hover {
+            background-color: var(--bg-card-hover);
+            border-color: var(--accent-blue);
+            transform: translateY(-4px);
+        }
+
         .finding-number {
             font-family: var(--font-code);
-            font-size: 0.85rem;
-            color: var(--accent-cyan);
+            font-size: 0.8rem;
+            color: var(--accent-blue);
             font-weight: 600;
             margin-bottom: 12px;
         }
 
         .finding-title {
-            font-size: 1.1rem;
+            font-size: 1.15rem;
             font-weight: 600;
             color: var(--text-primary);
-            margin-bottom: 12px;
-        }
-
-        .finding-block {
-            margin-bottom: 12px;
-        }
-
-        .finding-label {
-            font-size: 0.75rem;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-            color: var(--text-muted);
-            margin-bottom: 2px;
+            margin-bottom: 14px;
         }
 
         .finding-text {
             font-size: 0.925rem;
             color: var(--text-secondary);
+            margin-bottom: 10px;
+        }
+
+        /* Modal / Popup Overlay */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(12px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.25s ease;
+        }
+
+        .modal-overlay.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .modal-content {
+            background-color: var(--bg-modal);
+            border: 1px solid #424245;
+            border-radius: 20px;
+            width: 90%;
+            max-width: 600px;
+            padding: 32px;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.9);
+            transform: scale(0.95);
+            transition: transform 0.25s ease;
+        }
+
+        .modal-overlay.active .modal-content {
+            transform: scale(1);
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 16px;
+        }
+
+        .modal-title {
+            font-size: 1.35rem;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .modal-close {
+            background: transparent;
+            border: none;
+            color: var(--text-secondary);
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: color 0.2s ease;
+        }
+
+        .modal-close:hover {
+            color: var(--text-primary);
+        }
+
+        .modal-body {
+            color: var(--text-secondary);
+            font-size: 0.975rem;
+            line-height: 1.6;
         }
 
         /* Footer */
         footer {
             margin-top: 80px;
             border-top: 1px solid var(--border-color);
-            padding: 40px 0;
+            padding: 60px 0 40px;
             text-align: center;
-            color: var(--text-muted);
-            font-size: 0.9rem;
+        }
+
+        .footer-note {
+            max-width: 650px;
+            margin: 0 auto 28px;
+            font-size: 1.05rem;
+            color: var(--text-secondary);
+            font-weight: 400;
+            line-height: 1.6;
         }
 
         .footer-links {
             display: flex;
             justify-content: center;
             gap: 24px;
-            margin-bottom: 20px;
         }
 
         .footer-links a {
-            color: var(--text-secondary);
+            color: var(--text-muted);
             text-decoration: none;
+            font-size: 0.9rem;
             transition: color 0.2s ease;
         }
 
         .footer-links a:hover {
-            color: var(--accent-cyan);
+            color: var(--accent-blue);
         }
 
-        /* Responsive Breakpoints */
-        @media (max-width: 900px) {
-            .context-grid {
+        /* Mobile Breakpoints */
+        @media (max-width: 850px) {
+            .grid-2 {
                 grid-template-columns: 1fr;
             }
             .header-title {
-                font-size: 2rem;
+                font-size: 2.25rem;
             }
             .btn-secondary {
                 margin-left: 0;
@@ -346,16 +476,16 @@
     <header>
         <div class="container">
             <div class="header-content">
-                <span class="badge">Enterprise Supply Chain Analytics</span>
+                <span class="badge">Enterprise Supply Chain Intelligence</span>
                 <h1 class="header-title">E-Commerce Demand Forecasting & Inventory Optimization</h1>
-                <p class="header-subtitle">An end-to-end Python ML, SQL Star Schema, Power BI, and GenAI system automating safety stock and dynamic reorder points for multi-SKU retail portfolios.</p>
+                <p class="header-subtitle">An end-to-end Python ML, SQL Star Schema, Power BI, and GenAI system automating safety stock buffers and dynamic reorder points for multi-SKU retail portfolios.</p>
                 
                 <div class="header-actions">
-                    <a href="https://github.com/AnjaliAnalytics/ecommerce-demand-forecasting" target="_blank" class="btn btn-primary">
+                    <a href="https://github.com/AnjaliAnalytics/ecommerce-demand-forecasting" target="_blank" class="btn btn-primary clickable">
                         View GitHub Repository
                     </a>
-                    <a href="#dashboard" class="btn btn-secondary">
-                        View Analytics Suite
+                    <a href="#dashboard" class="btn btn-secondary clickable">
+                        Explore Analytics Suite
                     </a>
                 </div>
             </div>
@@ -367,25 +497,25 @@
         <div class="container">
             <div class="metrics-grid">
                 
-                <div class="metric-card">
+                <div class="metric-card clickable" onclick="openModal('Validation WAPE: 50.34%', 'Evaluated on a 10-week out-of-sample holdout set using a 4-Week Moving Average baseline. Successfully smoothed out transient demand spikes without overfitting continuous long-tail inventory items.')">
                     <div class="metric-title">Validation WAPE</div>
                     <div class="metric-value">50.34%</div>
                     <div class="metric-trend trend-positive">4-Week Moving Average Baseline</div>
                 </div>
 
-                <div class="metric-card">
+                <div class="metric-card clickable" onclick="openModal('Cycle Service Level: 95.0%', 'Derived using Z-score statistics (Z = 1.65) applied to weekly demand standard deviations, insulating retail fulfillment operations against lead-time supply shocks.')">
                     <div class="metric-title">Cycle Service Level</div>
                     <div class="metric-value">95.0%</div>
                     <div class="metric-trend trend-positive">Z-Score Buffer (Z = 1.65)</div>
                 </div>
 
-                <div class="metric-card">
+                <div class="metric-card clickable" onclick="openModal('Forecast Holdout Window: 10 Weeks', 'Strictly enforced chronological train-test splits on the final 10 calendar weeks to prevent data leakage and evaluate real-world forecasting resilience.')">
                     <div class="metric-title">Forecast Holdout Window</div>
                     <div class="metric-value">10 Wks</div>
                     <div class="metric-trend trend-warning">Zero Data Leakage Validation</div>
                 </div>
 
-                <div class="metric-card">
+                <div class="metric-card clickable" onclick="openModal('System Audit Status: 6 / 6', '100% automated system verification check passing database schema integrity, ML metric bounds, DAX logic, and Gemini API grounding tests.')">
                     <div class="metric-title">Audit Status</div>
                     <div class="metric-value">6 / 6</div>
                     <div class="metric-trend trend-positive">100% Automated System Pass</div>
@@ -395,188 +525,281 @@
         </div>
     </div>
 
-    <!-- 3. PROJECT OVERVIEW & BUSINESS PROBLEM -->
-    <section id="overview">
+    <!-- 3. DATASET & BUSINESS PROBLEM SECTION -->
+    <section id="dataset-overview">
         <div class="container">
-            <div class="context-grid">
+            <div class="section-header">
+                <span class="badge">Data & Methodology</span>
+                <h2 class="section-title">Dataset Selection & Data Cleaning Pipeline</h2>
+                <p class="section-desc">Transforming real-world e-commerce transactional data into clean, structured data models.</p>
+            </div>
+
+            <div class="grid-2">
                 
-                <div class="context-card">
-                    <h3>Business Context & Challenge</h3>
-                    <p>E-commerce retail operations suffer multi-million dollar losses caused by stockouts (lost revenue and degraded customer lifetime value) and overstocking (capital tied up in excess holding costs). Static reorder thresholds fail to adapt to demand volatility.</p>
-                    <p>This project establishes a data-driven pipeline to forecast demand, quantify safety stock, automate dynamic reorder thresholds (ROP), and surface financial risk metrics across a multi-SKU retail portfolio.</p>
+                <div class="content-card clickable" onclick="openModal('Dataset Details', 'The Online Retail transaction dataset includes multi-country, non-store retail transactions. It contains order cancellation flags (Invoices beginning with C), customer identifiers, unit prices, quantities, and chronological timestamps.')">
+                    <h3>Dataset Used & Selection Rationale</h3>
+                    <p><strong>Dataset Used:</strong> E-Commerce Online Retail Transaction Dataset (UCI Machine Learning Repository).</p>
+                    <p><strong>Why Selected:</strong> Captures true e-commerce volatility, multi-item customer shopping baskets, international order variations, and real-world supply chain anomalies (such as customer cancellations and unit price fluctuations).</p>
                 </div>
 
-                <div class="context-card">
-                    <h3>Tech Stack & Tooling</h3>
-                    <div style="margin-top: 12px;">
-                        <span class="tech-tag">Python (Pandas/NumPy)</span>
-                        <span class="tech-tag">SQLite</span>
-                        <span class="tech-tag">Time-Series ML</span>
-                        <span class="tech-tag">Power BI (DAX)</span>
-                        <span class="tech-tag">Star Schema</span>
-                        <span class="tech-tag">Google Gemini API</span>
-                        <span class="tech-tag">Streamlit</span>
-                        <span class="tech-tag">Git/GitHub</span>
+                <div class="content-card clickable" onclick="openModal('Business Problem & Solution', 'Static inventory rules lead to massive cash tie-ups in overstock and lost sales from stockouts. This pipeline automates dynamic Safety Stock and Reorder Points using time-series forecasting.')">
+                    <h3>The Business Problem & Resolution</h3>
+                    <p><strong>Business Problem:</strong> Static reorder thresholds lead to stockouts on fast-moving SKUs (lost revenue and customer churn) while tying up working capital in excess overstock.</p>
+                    <p><strong>How Resolved:</strong> Built an automated SQL & Python data cleaning pipeline, aggregated daily sales into weekly time-series, calculated 95% CSL Safety Stock, and grouped SKUs into 4 actionable risk categories (`REORDER NOW`, `MONITOR`, `SUFFICIENT STOCK`, `POTENTIAL OVERSTOCK`).</p>
+                </div>
+
+            </div>
+
+            <!-- SQL Query Example -->
+            <div style="margin-top: 24px;">
+                <div class="content-card clickable" onclick="openModal('SQL Wrangling Query', 'Cleaned raw invoice transactions by stripping cancellation codes, filtering non-positive quantities and zero unit prices, and aggregating into weekly time-series tables.')">
+                    <h3>Data Cleaning SQL Method</h3>
+                    <p style="color: var(--text-secondary); font-size: 0.9rem;">Example SQL CTE used during SQLite warehouse ingestion to eliminate returns and bad records:</p>
+                    <div class="code-container">
+<pre><code>WITH CleanedTransactions AS (
+    SELECT 
+        InvoiceNo,
+        StockCode,
+        Description,
+        Quantity,
+        InvoiceDate,
+        UnitPrice,
+        CustomerID,
+        (Quantity * UnitPrice) AS TotalLineRevenue
+    FROM raw_retail_data
+    WHERE InvoiceNo NOT LIKE 'C%' 
+      AND Quantity > 0 
+      AND UnitPrice > 0
+)
+SELECT 
+    StockCode,
+    STRFTTIME('%Y-%W', InvoiceDate) AS SalesWeek,
+    SUM(Quantity) AS TotalWeeklyDemand,
+    SUM(TotalLineRevenue) AS TotalWeeklyRevenue
+FROM CleanedTransactions
+GROUP BY StockCode, SalesWeek;</code></pre>
                     </div>
                 </div>
-
             </div>
         </div>
     </section>
 
-    <!-- 4. LIVE INTERACTIVE DASHBOARD SECTION -->
-    <section id="dashboard" style="background-color: rgba(30, 41, 59, 0.3);">
+    <!-- 4. SYSTEM ARCHITECTURE & TECH STACK -->
+    <section id="architecture">
         <div class="container">
             <div class="section-header">
-                <span class="badge">Live Analytics Interactive Suite</span>
-                <h2 class="section-title">Power BI & Interactive Streamlit Suite</h2>
-                <p class="section-desc">Explore the underlying Star Schema data models, custom DAX measures, and interactive application code.</p>
+                <span class="badge">Technical Workflow</span>
+                <h2 class="section-title">End-to-End System Architecture</h2>
+                <p class="section-desc">Data flow from raw transactional ingestion to statistical forecasting, Power BI, and GenAI summaries.</p>
             </div>
 
-            <div class="dashboard-container" style="text-align: center; padding: 60px 20px;">
-                <h3 style="color: var(--text-primary); font-size: 1.5rem; margin-bottom: 16px;">
+            <div class="arch-box">
+Raw Retail Data (CSV/SQLite)
+       │
+       ▼
+Data Cleaning & Feature Engineering (Pandas / SQL CTEs)
+       │
+       ├──► Relational Data Warehouse (SQLite)
+       │
+       ├──► Time-Series Demand Model (4-Week Moving Average Baseline)
+       │
+       ├──► Statistical Inventory Engine (95% CSL Safety Stock & Dynamic ROP)
+       │
+       ├──► Star Schema CSV Data Model (dim_product, dim_date, fact_inventory_risk)
+       │
+       ├──► Power BI Executive Dashboard Suite (6 Interactive Pages + Custom DAX)
+       │
+       ├──► GenAI Executive Briefing Engine (Google Gemini API - gemini-3.6-flash)
+       │
+       └──► Interactive Streamlit Portfolio Web App (src/app.py)
+            </div>
+
+            <div style="margin-top: 24px; text-align: center;">
+                <span class="tech-tag">Python (Pandas / NumPy)</span>
+                <span class="tech-tag">SQLite / SQL</span>
+                <span class="tech-tag">Time-Series ML</span>
+                <span class="tech-tag">Power BI Desktop</span>
+                <span class="tech-tag">DAX Star Schema</span>
+                <span class="tech-tag">Google Gemini API</span>
+                <span class="tech-tag">Streamlit</span>
+                <span class="tech-tag">Git / GitHub Pages</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- 5. ANALYTICS & REPOSITORY SECTION -->
+    <section id="dashboard">
+        <div class="container">
+            <div class="section-header" style="text-align: center;">
+                <span class="badge">Production Deliverables</span>
+                <h2 class="section-title">Power BI & Streamlit Analytics Suite</h2>
+                <p class="section-desc">Inspect the underlying Star Schema model, custom DAX measures, and web application source code.</p>
+            </div>
+
+            <div class="callout-card">
+                <h3 style="color: var(--text-primary); font-size: 1.5rem; margin-bottom: 12px; font-weight: 600;">
                     Interactive Power BI Suite & Streamlit App
                 </h3>
-                <p style="color: var(--text-secondary); max-width: 600px; margin: 0 auto 24px;">
-                    Explore the complete 6-page interactive report in the GitHub repository or launch the live Streamlit inventory management application locally.
+                <p style="color: var(--text-secondary); max-width: 620px; margin: 0 auto 24px; font-size: 1rem;">
+                    Access the complete 6-page interactive report configuration, custom DAX data model, and runnable Streamlit web application code inside the GitHub repository.
                 </p>
                 <a href="https://github.com/AnjaliAnalytics/ecommerce-demand-forecasting/tree/main/dashboard/powerbi" 
                    target="_blank" 
-                   class="btn btn-primary">
+                   class="btn btn-primary clickable">
                     View Power BI Star Schema & .PBIX Files
                 </a>
             </div>
         </div>
     </section>
 
-    <!-- 5. EXECUTIVE FINDINGS & STRATEGIC RECOMMENDATIONS -->
+    <!-- 6. EXECUTIVE FINDINGS SECTION -->
     <section id="findings">
         <div class="container">
             <div class="section-header">
-                <span class="badge">Actionable Intelligence</span>
-                <h2 class="section-title">Executive Findings & Action Plan</h2>
-                <p class="section-desc">Core data insights mapped directly to operational procurement decisions.</p>
+                <span class="badge">Strategic Insights</span>
+                <h2 class="section-title">Executive Findings & Action Framework</h2>
+                <p class="section-desc">Click any finding below to open full analytical breakdowns.</p>
             </div>
 
             <div class="findings-grid">
 
-                <div class="finding-card">
-                    <div class="finding-number">FINDING #01</div>
-                    <div class="finding-title">Out-of-Sample Forecast Stability</div>
-                    <div class="finding-block">
-                        <div class="finding-label">Problem Identified</div>
-                        <div class="finding-text">High demand volatility caused complex models to overfit transient sales spikes.</div>
-                    </div>
-                    <div class="finding-block">
-                        <div class="finding-label">Data Evidence</div>
+                <div class="finding-card clickable" onclick="openModal('Finding 01: Forecast Stability', 'High demand volatility caused complex models to overfit transient sales spikes. A 4-Week Moving Average achieved optimal out-of-sample WAPE of 50.34% and MAE of 325.50 units, providing stable baseline replenishment guidance.')">
+                    <div>
+                        <div class="finding-number">FINDING #01</div>
+                        <div class="finding-title">Out-of-Sample Forecast Stability</div>
                         <div class="finding-text">4-Week Moving Average achieved optimal out-of-sample WAPE of 50.34% and MAE of 325.50 units.</div>
                     </div>
-                    <div class="finding-block">
-                        <div class="finding-label">Business Action Plan</div>
-                        <div class="finding-text">Adopt 4-week smoothed moving baseline for stable replenishment planning.</div>
-                    </div>
+                    <span class="badge" style="align-self: flex-start; margin-top: 12px;">Click for breakdown</span>
                 </div>
 
-                <div class="finding-card">
-                    <div class="finding-number">FINDING #02</div>
-                    <div class="finding-title">Service Level Guarantee</div>
-                    <div class="finding-block">
-                        <div class="finding-label">Problem Identified</div>
-                        <div class="finding-text">Arbitrary safety stock buffers led to frequent stockouts during lead-time spikes.</div>
-                    </div>
-                    <div class="finding-block">
-                        <div class="finding-label">Data Evidence</div>
+                <div class="finding-card clickable" onclick="openModal('Finding 02: 95% Service Level Guarantee', 'Arbitrary safety stock buffers led to frequent stockouts. Formulated statistical Z-score safety stock targeting a 95% Cycle Service Level using Z = 1.65 applied to demand standard deviation.')">
+                    <div>
+                        <div class="finding-number">FINDING #02</div>
+                        <div class="finding-title">Service Level Guarantee</div>
                         <div class="finding-text">Formulated statistical Z-score safety stock equation targeting a 95% Cycle Service Level.</div>
                     </div>
-                    <div class="finding-block">
-                        <div class="finding-label">Business Action Plan</div>
-                        <div class="finding-text">Implement dynamic Safety Stock formulas based on weekly demand standard deviation.</div>
-                    </div>
+                    <span class="badge" style="align-self: flex-start; margin-top: 12px;">Click for breakdown</span>
                 </div>
 
-                <div class="finding-card">
-                    <div class="finding-number">FINDING #03</div>
-                    <div class="finding-title">Dynamic Reorder Point (ROP) Triggers</div>
-                    <div class="finding-block">
-                        <div class="finding-label">Problem Identified</div>
-                        <div class="finding-text">Fixed reorder points failed to account for supplier lead-time changes.</div>
+                <div class="finding-card clickable" onclick="openModal('Finding 03: Dynamic Reorder Points (ROP)', 'Fixed reorder points failed during lead-time shifts. The dynamic ROP equation calculates Lead Time Demand + Safety Stock automatically to trigger timely purchase orders.')">
+                    <div>
+                        <div class="finding-number">FINDING #03</div>
+                        <div class="finding-title">Dynamic Reorder Point Triggers</div>
+                        <div class="finding-text">Automates purchase order triggers whenever Inventory Position drops below dynamic ROP.</div>
                     </div>
-                    <div class="finding-block">
-                        <div class="finding-label">Data Evidence</div>
-                        <div class="finding-text">Reorder Point equation mathematically tied ROP directly to Lead Time Demand + Safety Stock.</div>
-                    </div>
-                    <div class="finding-block">
-                        <div class="finding-label">Business Action Plan</div>
-                        <div class="finding-text">Automate purchase order triggers whenever Inventory Position drops below ROP.</div>
-                    </div>
+                    <span class="badge" style="align-self: flex-start; margin-top: 12px;">Click for breakdown</span>
                 </div>
 
-                <div class="finding-card">
-                    <div class="finding-number">FINDING #04</div>
-                    <div class="finding-title">Stockout Exposure Prioritization</div>
-                    <div class="finding-block">
-                        <div class="finding-label">Problem Identified</div>
-                        <div class="finding-text">Procurement teams lacked visibility into which SKUs required immediate capital allocation.</div>
+                <div class="finding-card clickable" onclick="openModal('Finding 04: Inventory Risk Tiers', 'Segmented product portfolio into 4 actionable risk categories: REORDER NOW, MONITOR, SUFFICIENT STOCK, and POTENTIAL OVERSTOCK to optimize capital allocation.')">
+                    <div>
+                        <div class="finding-number">FINDING #04</div>
+                        <div class="finding-title">Working Capital Prioritization</div>
+                        <div class="finding-text">Segmented inventory into 4 actionable risk tiers to prioritize high-risk stockouts over excess stock.</div>
                     </div>
-                    <div class="finding-block">
-                        <div class="finding-label">Data Evidence</div>
-                        <div class="finding-text">Segmented product portfolio into 4 risk categories (`REORDER NOW`, `MONITOR`, `SUFFICIENT`, `OVERSTOCK`).</div>
-                    </div>
-                    <div class="finding-block">
-                        <div class="finding-label">Business Action Plan</div>
-                        <div class="finding-text">Direct 100% of critical procurement budgets immediately to `REORDER NOW` items.</div>
-                    </div>
+                    <span class="badge" style="align-self: flex-start; margin-top: 12px;">Click for breakdown</span>
                 </div>
 
-                <div class="finding-card">
-                    <div class="finding-number">FINDING #05</div>
-                    <div class="finding-title">GenAI Executive Briefing Integration</div>
-                    <div class="finding-block">
-                        <div class="finding-label">Problem Identified</div>
-                        <div class="finding-text">Manual compilation of C-suite inventory risk reports consumed significant analyst time.</div>
+                <div class="finding-card clickable" onclick="openModal('Finding 05: GenAI C-Suite Briefings', 'Integrated Google Gemini API (gemini-3.6-flash) with low temperature grounding (0.2) to convert inventory metrics into C-suite executive briefings without numerical hallucination.')">
+                    <div>
+                        <div class="finding-number">FINDING #05</div>
+                        <div class="finding-title">GenAI Interpretation Engine</div>
+                        <div class="finding-text">Automated C-suite briefings with strict low-temperature controls to eliminate hallucinations.</div>
                     </div>
-                    <div class="finding-block">
-                        <div class="finding-label">Data Evidence</div>
-                        <div class="finding-text">Integrated Gemini API (`gemini-3.6-flash`) with low temperature (0.2) grounding controls.</div>
-                    </div>
-                    <div class="finding-block">
-                        <div class="finding-label">Business Action Plan</div>
-                        <div class="finding-text">Automate factual executive summaries without risk of numerical hallucination.</div>
-                    </div>
+                    <span class="badge" style="align-self: flex-start; margin-top: 12px;">Click for breakdown</span>
                 </div>
 
-                <div class="finding-card">
-                    <div class="finding-number">FINDING #06</div>
-                    <div class="finding-title">Streamlit Portfolio Deployment</div>
-                    <div class="finding-block">
-                        <div class="finding-label">Problem Identified</div>
-                        <div class="finding-text">Stakeholders needed a lightweight, standalone UI to inspect SKU metrics on demand.</div>
+                <div class="finding-card clickable" onclick="openModal('Finding 06: Interactive Streamlit UI', 'Engineered a standalone Streamlit web application (src/app.py) allowing stakeholders to run SKU-level lookups, review inventory metrics, and generate AI insights interactively.')">
+                    <div>
+                        <div class="finding-number">FINDING #06</div>
+                        <div class="finding-title">Streamlit Web Application</div>
+                        <div class="finding-text">Interactive web interface built for fast SKU-level inventory inspection and AI briefings.</div>
                     </div>
-                    <div class="finding-block">
-                        <div class="finding-label">Data Evidence</div>
-                        <div class="finding-text">Engineered fast interactive Streamlit app (`src/app.py`) reading precomputed Star Schema outputs.</div>
-                    </div>
-                    <div class="finding-block">
-                        <div class="finding-label">Business Action Plan</div>
-                        <div class="finding-text">Deploy Streamlit web UI for rapid cross-departmental inventory inspection.</div>
-                    </div>
+                    <span class="badge" style="align-self: flex-start; margin-top: 12px;">Click for breakdown</span>
                 </div>
 
             </div>
         </div>
     </section>
 
-    <!-- 6. FOOTER -->
+    <!-- 7. FOOTER -->
     <footer>
         <div class="container">
+            <p class="footer-note">
+                Thank you for reviewing this case study! Hope this project provided insightful perspectives on bridging machine learning, supply chain optimization, and executive business intelligence.
+            </p>
             <div class="footer-links">
-                <a href="https://github.com/AnjaliAnalytics/ecommerce-demand-forecasting" target="_blank">GitHub Repository</a>
-                <a href="https://www.linkedin.com/in/anjali-yadav-dev/?isSelfProfile=false" target="_blank">LinkedIn Profile</a>
-                <a href="mailto:anjaliyadavpersonal2001@gmail.com">Contact Email</a>
+                <a href="https://github.com/AnjaliAnalytics/ecommerce-demand-forecasting" target="_blank" class="clickable">GitHub Repository</a>
+                <a href="https://www.linkedin.com/in/anjali-yadav-dev/?isSelfProfile=false" target="_blank" class="clickable">LinkedIn Profile</a>
+                <a href="mailto:anjaliyadavpersonal2001@gmail.com.com" class="clickable">Contact Email</a>
             </div>
-            <p>&copy; 2026 Anjali Analytics. All rights reserved. Enterprise Supply Chain Portfolio Case Study.</p>
         </div>
     </footer>
 
+    <!-- POPUP MODAL CONTAINER -->
+    <div class="modal-overlay" id="infoModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title" id="modalTitle">Details</h3>
+                <button class="modal-close clickable" onclick="closeModal()">&times;</button>
+            </div>
+            <div class="modal-body" id="modalBody">
+                Modal content goes here.
+            </div>
+        </div>
+    </div>
+
+    <!-- AUDIO SYNTHESIZER & MODAL SCRIPT -->
+    <script>
+        // Web Audio Synthesizer for Apple-style subtle click sound
+        const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+
+        function playClickSound() {
+            if (audioCtx.state === 'suspended') {
+                audioCtx.resume();
+            }
+            const osc = audioCtx.createOscillator();
+            const gain = audioCtx.createGain();
+
+            osc.type = 'sine';
+            osc.frequency.setValueAtTime(800, audioCtx.currentTime);
+            osc.frequency.exponentialRampToValueAtTime(400, audioCtx.currentTime + 0.03);
+
+            gain.gain.setValueAtTime(0.08, audioCtx.currentTime);
+            gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.03);
+
+            osc.connect(gain);
+            gain.connect(audioCtx.destination);
+
+            osc.start();
+            osc.stop(audioCtx.currentTime + 0.03);
+        }
+
+        // Attach audio trigger to all clickable elements
+        document.querySelectorAll('.clickable').forEach(element => {
+            element.addEventListener('click', () => {
+                playClickSound();
+            });
+        });
+
+        // Modal Functions
+        function openModal(title, bodyText) {
+            playClickSound();
+            document.getElementById('modalTitle').innerText = title;
+            document.getElementById('modalBody').innerText = bodyText;
+            document.getElementById('infoModal').classList.add('active');
+        }
+
+        function closeModal() {
+            playClickSound();
+            document.getElementById('infoModal').classList.remove('active');
+        }
+
+        // Close modal when clicking outside content card
+        document.getElementById('infoModal').addEventListener('click', (e) => {
+            if (e.target === document.getElementById('infoModal')) {
+                closeModal();
+            }
+        });
+    </script>
 </body>
 </html>
