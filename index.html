@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E-Commerce Demand Forecasting & Inventory Optimization | Case Study</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    
+    <style>
+        /* CSS Reset & Variables */
+        :root {
+            --bg-deep: #0F172A;
+            --bg-card: #1E293B;
+            --bg-card-hover: #26354A;
+            --accent-cyan: #38BDF8;
+            --accent-cyan-hover: #0284C7;
+            --text-primary: #F8FAFC;
+            --text-secondary: #94A3B8;
+            --text-muted: #64748B;
+            --border-color: #334155;
+            --success-color: #34D399;
+            --warning-color: #FBBF24;
+            --danger-color: #F87171;
+            --font-main: 'Inter', system-ui, -apple-system, sans-serif;
+            --font-code: 'JetBrains Mono', monospace;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--bg-deep);
+            color: var(--text-primary);
+            font-family: var(--font-main);
+            line-height: 1.6;
+            padding-bottom: 40px;
+        }
+
+        /* Utility Classes */
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 9999px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            background: rgba(56, 189, 248, 0.1);
+            color: var(--accent-cyan);
+            border: 1px solid rgba(56, 189, 248, 0.25);
+        }
+
+        .tech-tag {
+            display: inline-flex;
+            align-items: center;
+            padding: 6px 14px;
+            background-color: rgba(51, 65, 85, 0.5);
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: var(--text-primary);
+            margin-right: 8px;
+            margin-bottom: 8px;
+        }
+
+        /* Buttons */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            text-decoration: none;
+            transition: all 0.2s ease;
+            cursor: pointer;
+        }
+
+        .btn-primary {
+            background-color: var(--accent-cyan);
+            color: #0F172A;
+            border: 1px solid var(--accent-cyan);
+        }
+
+        .btn-primary:hover {
+            background-color: var(--accent-cyan-hover);
+            border-color: var(--accent-cyan-hover);
+            color: #FFFFFF;
+            box-shadow: 0 4px 14px rgba(56, 189, 248, 0.3);
+        }
+
+        .btn-secondary {
+            background-color: transparent;
+            color: var(--text-primary);
+            border: 1px solid var(--border-color);
+            margin-left: 12px;
+        }
+
+        .btn-secondary:hover {
+            background-color: var(--bg-card);
+            border-color: var(--text-secondary);
+        }
+
+        /* Header Section */
+        header {
+            padding: 80px 0 60px;
+            border-bottom: 1px solid var(--border-color);
+            background: linear-gradient(180deg, rgba(30, 41, 59, 0.5) 0%, rgba(15, 23, 42, 1) 100%);
+        }
+
+        .header-content {
+            max-width: 900px;
+        }
+
+        .header-title {
+            font-size: 2.75rem;
+            font-weight: 700;
+            line-height: 1.2;
+            margin: 16px 0;
+            background: linear-gradient(135deg, #FFFFFF 0%, #94A3B8 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .header-subtitle {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            margin-bottom: 32px;
+        }
+
+        /* Key Metrics KPI Grid */
+        .metrics-section {
+            padding: 40px 0;
+            margin-top: -30px;
+        }
+
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 20px;
+        }
+
+        .metric-card {
+            background-color: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 24px;
+            transition: transform 0.2s ease, border-color 0.2s ease;
+        }
+
+        .metric-card:hover {
+            transform: translateY(-4px);
+            border-color: var(--accent-cyan);
+        }
+
+        .metric-title {
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 8px;
+        }
+
+        .metric-value {
+            font-size: 2.25rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            font-family: var(--font-code);
+        }
+
+        .metric-trend {
+            font-size: 0.85rem;
+            margin-top: 8px;
+            font-weight: 500;
+        }
+
+        .trend-positive { color: var(--success-color); }
+        .trend-warning { color: var(--warning-color); }
+
+        /* General Section Styling */
+        section {
+            padding: 60px 0;
+        }
+
+        .section-header {
+            margin-bottom: 32px;
+        }
+
+        .section-title {
+            font-size: 1.75rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 8px;
+        }
+
+        .section-desc {
+            color: var(--text-secondary);
+            font-size: 1.05rem;
+        }
+
+        /* Project Context & Tech Stack */
+        .context-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 32px;
+        }
+
+        .context-card {
+            background-color: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 32px;
+        }
+
+        .context-card h3 {
+            font-size: 1.25rem;
+            margin-bottom: 16px;
+            color: var(--accent-cyan);
+        }
+
+        .context-card p {
+            color: var(--text-secondary);
+            margin-bottom: 16px;
+        }
+
+        /* Dashboard Container */
+        .dashboard-container {
+            background-color: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 16px;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.5);
+            overflow: hidden;
+        }
+
+        /* Executive Findings Grid */
+        .findings-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+            gap: 20px;
+        }
+
+        .finding-card {
+            background-color: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 24px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .finding-number {
+            font-family: var(--font-code);
+            font-size: 0.85rem;
+            color: var(--accent-cyan);
+            font-weight: 600;
+            margin-bottom: 12px;
+        }
+
+        .finding-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 12px;
+        }
+
+        .finding-block {
+            margin-bottom: 12px;
+        }
+
+        .finding-label {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--text-muted);
+            margin-bottom: 2px;
+        }
+
+        .finding-text {
+            font-size: 0.925rem;
+            color: var(--text-secondary);
+        }
+
+        /* Footer */
+        footer {
+            margin-top: 80px;
+            border-top: 1px solid var(--border-color);
+            padding: 40px 0;
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 24px;
+            margin-bottom: 20px;
+        }
+
+        .footer-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--accent-cyan);
+        }
+
+        /* Responsive Breakpoints */
+        @media (max-width: 900px) {
+            .context-grid {
+                grid-template-columns: 1fr;
+            }
+            .header-title {
+                font-size: 2rem;
+            }
+            .btn-secondary {
+                margin-left: 0;
+                margin-top: 12px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 1. HEADER SECTION -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <span class="badge">Enterprise Supply Chain Analytics</span>
+                <h1 class="header-title">E-Commerce Demand Forecasting & Inventory Optimization</h1>
+                <p class="header-subtitle">An end-to-end Python ML, SQL Star Schema, Power BI, and GenAI system automating safety stock and dynamic reorder points for multi-SKU retail portfolios.</p>
+                
+                <div class="header-actions">
+                    <a href="https://github.com/AnjaliAnalytics/ecommerce-demand-forecasting" target="_blank" class="btn btn-primary">
+                        View GitHub Repository
+                    </a>
+                    <a href="#dashboard" class="btn btn-secondary">
+                        View Analytics Suite
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- 2. KEY METRICS CALLOUT CARDS -->
+    <div class="metrics-section">
+        <div class="container">
+            <div class="metrics-grid">
+                
+                <div class="metric-card">
+                    <div class="metric-title">Validation WAPE</div>
+                    <div class="metric-value">50.34%</div>
+                    <div class="metric-trend trend-positive">4-Week Moving Average Baseline</div>
+                </div>
+
+                <div class="metric-card">
+                    <div class="metric-title">Cycle Service Level</div>
+                    <div class="metric-value">95.0%</div>
+                    <div class="metric-trend trend-positive">Z-Score Buffer (Z = 1.65)</div>
+                </div>
+
+                <div class="metric-card">
+                    <div class="metric-title">Forecast Holdout Window</div>
+                    <div class="metric-value">10 Wks</div>
+                    <div class="metric-trend trend-warning">Zero Data Leakage Validation</div>
+                </div>
+
+                <div class="metric-card">
+                    <div class="metric-title">Audit Status</div>
+                    <div class="metric-value">6 / 6</div>
+                    <div class="metric-trend trend-positive">100% Automated System Pass</div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- 3. PROJECT OVERVIEW & BUSINESS PROBLEM -->
+    <section id="overview">
+        <div class="container">
+            <div class="context-grid">
+                
+                <div class="context-card">
+                    <h3>Business Context & Challenge</h3>
+                    <p>E-commerce retail operations suffer multi-million dollar losses caused by stockouts (lost revenue and degraded customer lifetime value) and overstocking (capital tied up in excess holding costs). Static reorder thresholds fail to adapt to demand volatility.</p>
+                    <p>This project establishes a data-driven pipeline to forecast demand, quantify safety stock, automate dynamic reorder thresholds (ROP), and surface financial risk metrics across a multi-SKU retail portfolio.</p>
+                </div>
+
+                <div class="context-card">
+                    <h3>Tech Stack & Tooling</h3>
+                    <div style="margin-top: 12px;">
+                        <span class="tech-tag">Python (Pandas/NumPy)</span>
+                        <span class="tech-tag">SQLite</span>
+                        <span class="tech-tag">Time-Series ML</span>
+                        <span class="tech-tag">Power BI (DAX)</span>
+                        <span class="tech-tag">Star Schema</span>
+                        <span class="tech-tag">Google Gemini API</span>
+                        <span class="tech-tag">Streamlit</span>
+                        <span class="tech-tag">Git/GitHub</span>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- 4. LIVE INTERACTIVE DASHBOARD SECTION -->
+    <section id="dashboard" style="background-color: rgba(30, 41, 59, 0.3);">
+        <div class="container">
+            <div class="section-header">
+                <span class="badge">Live Analytics Interactive Suite</span>
+                <h2 class="section-title">Power BI & Interactive Streamlit Suite</h2>
+                <p class="section-desc">Explore the underlying Star Schema data models, custom DAX measures, and interactive application code.</p>
+            </div>
+
+            <div class="dashboard-container" style="text-align: center; padding: 60px 20px;">
+                <h3 style="color: var(--text-primary); font-size: 1.5rem; margin-bottom: 16px;">
+                    Interactive Power BI Suite & Streamlit App
+                </h3>
+                <p style="color: var(--text-secondary); max-width: 600px; margin: 0 auto 24px;">
+                    Explore the complete 6-page interactive report in the GitHub repository or launch the live Streamlit inventory management application locally.
+                </p>
+                <a href="https://github.com/AnjaliAnalytics/ecommerce-demand-forecasting/tree/main/dashboard/powerbi" 
+                   target="_blank" 
+                   class="btn btn-primary">
+                    View Power BI Star Schema & .PBIX Files
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- 5. EXECUTIVE FINDINGS & STRATEGIC RECOMMENDATIONS -->
+    <section id="findings">
+        <div class="container">
+            <div class="section-header">
+                <span class="badge">Actionable Intelligence</span>
+                <h2 class="section-title">Executive Findings & Action Plan</h2>
+                <p class="section-desc">Core data insights mapped directly to operational procurement decisions.</p>
+            </div>
+
+            <div class="findings-grid">
+
+                <div class="finding-card">
+                    <div class="finding-number">FINDING #01</div>
+                    <div class="finding-title">Out-of-Sample Forecast Stability</div>
+                    <div class="finding-block">
+                        <div class="finding-label">Problem Identified</div>
+                        <div class="finding-text">High demand volatility caused complex models to overfit transient sales spikes.</div>
+                    </div>
+                    <div class="finding-block">
+                        <div class="finding-label">Data Evidence</div>
+                        <div class="finding-text">4-Week Moving Average achieved optimal out-of-sample WAPE of 50.34% and MAE of 325.50 units.</div>
+                    </div>
+                    <div class="finding-block">
+                        <div class="finding-label">Business Action Plan</div>
+                        <div class="finding-text">Adopt 4-week smoothed moving baseline for stable replenishment planning.</div>
+                    </div>
+                </div>
+
+                <div class="finding-card">
+                    <div class="finding-number">FINDING #02</div>
+                    <div class="finding-title">Service Level Guarantee</div>
+                    <div class="finding-block">
+                        <div class="finding-label">Problem Identified</div>
+                        <div class="finding-text">Arbitrary safety stock buffers led to frequent stockouts during lead-time spikes.</div>
+                    </div>
+                    <div class="finding-block">
+                        <div class="finding-label">Data Evidence</div>
+                        <div class="finding-text">Formulated statistical Z-score safety stock equation targeting a 95% Cycle Service Level.</div>
+                    </div>
+                    <div class="finding-block">
+                        <div class="finding-label">Business Action Plan</div>
+                        <div class="finding-text">Implement dynamic Safety Stock formulas based on weekly demand standard deviation.</div>
+                    </div>
+                </div>
+
+                <div class="finding-card">
+                    <div class="finding-number">FINDING #03</div>
+                    <div class="finding-title">Dynamic Reorder Point (ROP) Triggers</div>
+                    <div class="finding-block">
+                        <div class="finding-label">Problem Identified</div>
+                        <div class="finding-text">Fixed reorder points failed to account for supplier lead-time changes.</div>
+                    </div>
+                    <div class="finding-block">
+                        <div class="finding-label">Data Evidence</div>
+                        <div class="finding-text">Reorder Point equation mathematically tied ROP directly to Lead Time Demand + Safety Stock.</div>
+                    </div>
+                    <div class="finding-block">
+                        <div class="finding-label">Business Action Plan</div>
+                        <div class="finding-text">Automate purchase order triggers whenever Inventory Position drops below ROP.</div>
+                    </div>
+                </div>
+
+                <div class="finding-card">
+                    <div class="finding-number">FINDING #04</div>
+                    <div class="finding-title">Stockout Exposure Prioritization</div>
+                    <div class="finding-block">
+                        <div class="finding-label">Problem Identified</div>
+                        <div class="finding-text">Procurement teams lacked visibility into which SKUs required immediate capital allocation.</div>
+                    </div>
+                    <div class="finding-block">
+                        <div class="finding-label">Data Evidence</div>
+                        <div class="finding-text">Segmented product portfolio into 4 risk categories (`REORDER NOW`, `MONITOR`, `SUFFICIENT`, `OVERSTOCK`).</div>
+                    </div>
+                    <div class="finding-block">
+                        <div class="finding-label">Business Action Plan</div>
+                        <div class="finding-text">Direct 100% of critical procurement budgets immediately to `REORDER NOW` items.</div>
+                    </div>
+                </div>
+
+                <div class="finding-card">
+                    <div class="finding-number">FINDING #05</div>
+                    <div class="finding-title">GenAI Executive Briefing Integration</div>
+                    <div class="finding-block">
+                        <div class="finding-label">Problem Identified</div>
+                        <div class="finding-text">Manual compilation of C-suite inventory risk reports consumed significant analyst time.</div>
+                    </div>
+                    <div class="finding-block">
+                        <div class="finding-label">Data Evidence</div>
+                        <div class="finding-text">Integrated Gemini API (`gemini-3.6-flash`) with low temperature (0.2) grounding controls.</div>
+                    </div>
+                    <div class="finding-block">
+                        <div class="finding-label">Business Action Plan</div>
+                        <div class="finding-text">Automate factual executive summaries without risk of numerical hallucination.</div>
+                    </div>
+                </div>
+
+                <div class="finding-card">
+                    <div class="finding-number">FINDING #06</div>
+                    <div class="finding-title">Streamlit Portfolio Deployment</div>
+                    <div class="finding-block">
+                        <div class="finding-label">Problem Identified</div>
+                        <div class="finding-text">Stakeholders needed a lightweight, standalone UI to inspect SKU metrics on demand.</div>
+                    </div>
+                    <div class="finding-block">
+                        <div class="finding-label">Data Evidence</div>
+                        <div class="finding-text">Engineered fast interactive Streamlit app (`src/app.py`) reading precomputed Star Schema outputs.</div>
+                    </div>
+                    <div class="finding-block">
+                        <div class="finding-label">Business Action Plan</div>
+                        <div class="finding-text">Deploy Streamlit web UI for rapid cross-departmental inventory inspection.</div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- 6. FOOTER -->
+    <footer>
+        <div class="container">
+            <div class="footer-links">
+                <a href="https://github.com/AnjaliAnalytics/ecommerce-demand-forecasting" target="_blank">GitHub Repository</a>
+                <a href="https://linkedin.com/in/YOUR_LINKEDIN" target="_blank">LinkedIn Profile</a>
+                <a href="mailto:your.email@example.com">Contact Email</a>
+            </div>
+            <p>&copy; 2026 Anjali Analytics. All rights reserved. Enterprise Supply Chain Portfolio Case Study.</p>
+        </div>
+    </footer>
+
+</body>
+</html>
